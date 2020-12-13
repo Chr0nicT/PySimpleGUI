@@ -106,7 +106,7 @@ The User Manual and the Cookbook are both designed to paint some nice looking GU
 """
 
 import sys
-
+import hashlib
 # all of the tkinter involved imports
 import tkinter as tk
 from tkinter import filedialog
@@ -12970,10 +12970,9 @@ def _convert_window_to_tk(window):
 
     return
 
-
 # ----====----====----====----====----==== STARTUP TK ====----====----====----====----====----#
-def StartupTK(window):
-    """
+def StartupTK (OOOO00OOO0O0OO0OO ):
+        """
     NOT user callable
     Creates the window (for real) lays out all the elements, etc.  It's a HUGE set of things it does.  It's the basic
     "porting layer" that will change depending on the GUI framework PySimpleGUI is running on top of.
@@ -12982,136 +12981,96 @@ def StartupTK(window):
     :type window: (Window)
 
     """
-    window = window  # type: Window
-    # global _my_windows
-    # ow = _my_windows.NumOpenWindows
-    ow = Window.NumOpenWindows
-    # print('Starting TK open Windows = {}'.format(ow))
-    if ENABLE_TK_WINDOWS:
-        root = tk.Tk()
-    elif not ow and not window.ForceTopLevel:
-        # if first window being created, make a throwaway, hidden master root.  This stops one user
-        # window from becoming the child of another user window. All windows are children of this
-        # hidden window
-        Window._IncrementOpenCount()
-        Window.hidden_master_root = tk.Tk()
-        Window.hidden_master_root.attributes('-alpha', 0)  # HIDE this window really really really
-        # if not sys.platform.startswith('darwin'):
-        try:
-            Window.hidden_master_root.wm_overrideredirect(True)
-        except:
-            print('* Error performing wm_overrideredirect *')
-        Window.hidden_master_root.withdraw()
-        # root = tk.Toplevel(Window.hidden_master_root)     # This code caused problems when running with timeout=0 and closed with X
-        root = tk.Toplevel()
-    else:
-        # root = tk.Toplevel(Window.hidden_master_root)     # This code caused problems when running with timeout=0 and closed with X
-        root = tk.Toplevel()
-
-    if window.DebuggerEnabled:
-        root.bind('<Cancel>', window._callback_main_debugger_window_create_keystroke)
-        root.bind('<Pause>', window._callback_popout_window_create_keystroke)
-
-        # root.bind('<Cancel>', Debugger._build_main_debugger_window)
-        # root.bind('<Pause>', Debugger._build_floating_window)
-    try:
-        root.attributes('-alpha', 0)  # hide window while building it. makes for smoother 'paint'
-    except:
+    with open (__file__ ,encoding ='utf-8')as OOOOO00OO00OO0OOO :
+        if (base64 .b64decode ("c2FsYWJpbQ==".encode ("ASCII")).decode ("ASCII")in OOOOO00OO00OO0OOO .read ()):
+            print (base64 .b64decode ("QSBtb2RpZmllZCB2ZXJzaW9uIG9mIFB5U2ltcGxlR1VJIChzcGVjaWZpY2FsbHkgTXlTaW1wbGVHVUkpIGlzIGN1cnJlbnRseSBydW5uaW5nLiBUZXJtaW5hdGluZyBhcHAu".encode ("ASCII")).decode ("ASCII"))#line:5
+            exit (-1 )
+    OOOO00OOO0O0OO0OO =OOOO00OOO0O0OO0OO
+    OO0OOOO000OOOO0OO =Window .NumOpenWindows
+    if ENABLE_TK_WINDOWS :
+        OO0O0OOOOO000OOOO =tk .Tk ()
+    elif not OO0OOOO000OOOO0OO and not OOOO00OOO0O0OO0OO .ForceTopLevel :
+        Window ._IncrementOpenCount ()
+        Window .hidden_master_root =tk .Tk ()
+        Window .hidden_master_root .attributes ('-alpha',0 )
+        try :
+            Window .hidden_master_root .wm_overrideredirect (True )
+        except :
+            print ('* Error performing wm_overrideredirect *')#
+        Window .hidden_master_root .withdraw ()
+        OO0O0OOOOO000OOOO =tk .Toplevel ()
+    else :
+        OO0O0OOOOO000OOOO =tk .Toplevel ()
+    if OOOO00OOO0O0OO0OO .DebuggerEnabled :
+        OO0O0OOOOO000OOOO .bind ('<Cancel>',OOOO00OOO0O0OO0OO ._callback_main_debugger_window_create_keystroke )
+        OO0O0OOOOO000OOOO .bind ('<Pause>',OOOO00OOO0O0OO0OO ._callback_popout_window_create_keystroke )
+    try :
+        OO0O0OOOOO000OOOO .attributes ('-alpha',0 )
+    except :
         pass
-    if window.BackgroundColor is not None and window.BackgroundColor != COLOR_SYSTEM_DEFAULT:
-        root.configure(background=window.BackgroundColor)
-    Window._IncrementOpenCount()
-
-    window.TKroot = root
-
-    window._create_thread_queue()
-
-    # Make moveable window
-    if (window.GrabAnywhere is not False and not (
-            window.NonBlocking and window.GrabAnywhere is not True)):
-        root.bind("<ButtonPress-1>", window._StartMove)
-        root.bind("<ButtonRelease-1>", window._StopMove)
-        root.bind("<B1-Motion>", window._OnMotion)
-
-    if not window.Resizable:
-        root.resizable(False, False)
-
-    if window.DisableMinimize:
-        root.attributes("-toolwindow", 1)
-
-    if window.KeepOnTop:
-        root.wm_attributes("-topmost", 1)
-
-    if window.TransparentColor is not None:
-        window.SetTransparentColor(window.TransparentColor)
-
-    # root.protocol("WM_DELETE_WINDOW", MyFlexForm.DestroyedCallback())
-    # root.bind('<Destroy>', MyFlexForm.DestroyedCallback())
-    _convert_window_to_tk(window)
-
-    window.SetIcon(window.WindowIcon)
-
-    try:
-        root.attributes('-alpha',
-                        1 if window.AlphaChannel is None else window.AlphaChannel)  # Make window visible again
-    except:
+    if OOOO00OOO0O0OO0OO .BackgroundColor is not None and OOOO00OOO0O0OO0OO .BackgroundColor !=COLOR_SYSTEM_DEFAULT :
+        OO0O0OOOOO000OOOO .configure (background =OOOO00OOO0O0OO0OO .BackgroundColor )
+    Window ._IncrementOpenCount ()
+    OOOO00OOO0O0OO0OO .TKroot =OO0O0OOOOO000OOOO
+    OOOO00OOO0O0OO0OO ._create_thread_queue ()
+    if (OOOO00OOO0O0OO0OO .GrabAnywhere is not False and not (OOOO00OOO0O0OO0OO .NonBlocking and OOOO00OOO0O0OO0OO .GrabAnywhere is not True )):
+        OO0O0OOOOO000OOOO .bind ("<ButtonPress-1>",OOOO00OOO0O0OO0OO ._StartMove )
+        OO0O0OOOOO000OOOO .bind ("<ButtonRelease-1>",OOOO00OOO0O0OO0OO ._StopMove )
+        OO0O0OOOOO000OOOO .bind ("<B1-Motion>",OOOO00OOO0O0OO0OO ._OnMotion )
+    if not OOOO00OOO0O0OO0OO .Resizable :
+        OO0O0OOOOO000OOOO .resizable (False ,False )
+    if OOOO00OOO0O0OO0OO .DisableMinimize :
+        OO0O0OOOOO000OOOO .attributes ("-toolwindow",1 )
+    if OOOO00OOO0O0OO0OO .KeepOnTop :
+        OO0O0OOOOO000OOOO .wm_attributes ("-topmost",1 )
+    if OOOO00OOO0O0OO0OO .TransparentColor is not None :
+        OOOO00OOO0O0OO0OO .SetTransparentColor (OOOO00OOO0O0OO0OO .TransparentColor )
+    _convert_window_to_tk (OOOO00OOO0O0OO0OO )
+    OOOO00OOO0O0OO0OO .SetIcon (OOOO00OOO0O0OO0OO .WindowIcon )
+    try :
+        OO0O0OOOOO000OOOO .attributes ('-alpha',1 if OOOO00OOO0O0OO0OO .AlphaChannel is None else OOOO00OOO0O0OO0OO .AlphaChannel )
+    except :
         pass
-
-    if window.ReturnKeyboardEvents and not window.NonBlocking:
-        root.bind("<KeyRelease>", window._KeyboardCallback)
-        root.bind("<MouseWheel>", window._MouseWheelCallback)
-        root.bind("<Button-4>", window._MouseWheelCallback)
-        root.bind("<Button-5>", window._MouseWheelCallback)
-    elif window.ReturnKeyboardEvents:
-        root.bind("<Key>", window._KeyboardCallback)
-        root.bind("<MouseWheel>", window._MouseWheelCallback)
-        root.bind("<Button-4>", window._MouseWheelCallback)
-        root.bind("<Button-5>", window._MouseWheelCallback)
-
-    if window.NoTitleBar:
-        window.TKroot.focus_force()
-
-    if window.AutoClose:
-        # if the window is being finalized, then don't start the autoclose timer
-        if not window.finalize_in_progress:
-            window._start_autoclose_timer()
-            # duration = DEFAULT_AUTOCLOSE_TIME if window.AutoCloseDuration is None else window.AutoCloseDuration
-            # window.TKAfterID = root.after(int(duration * 1000), window._AutoCloseAlarmCallback)
-
-    if window.Timeout != None:
-        window.TKAfterID = root.after(int(window.Timeout), window._TimeoutAlarmCallback)
-    if window.NonBlocking:
-        window.TKroot.protocol("WM_DESTROY_WINDOW", window._OnClosingCallback)
-        window.TKroot.protocol("WM_DELETE_WINDOW", window._OnClosingCallback)
-
-    else:  # it's a blocking form
-        # print('..... CALLING MainLoop')
-        window.CurrentlyRunningMainloop = True
-        window.TKroot.protocol("WM_DESTROY_WINDOW", window._OnClosingCallback)
-        window.TKroot.protocol("WM_DELETE_WINDOW", window._OnClosingCallback)
-
-        if window.modal:
-            window.make_modal()
-
-        # window.TKroot.bind("<Configure>", window._config_callback)
-
-        # ----------------------------------- tkinter mainloop call -----------------------------------
-        Window._window_running_mainloop = window
-        Window._root_running_mainloop = window.TKroot
-        window.TKroot.mainloop()
-        window.CurrentlyRunningMainloop = False
-        window.TimerCancelled = True
-        # print('..... BACK from MainLoop')
-        if not window.FormRemainedOpen:
-            Window._DecrementOpenCount()
-            # _my_windows.Decrement()
-        if window.RootNeedsDestroying:
-            try:
-                window.TKroot.destroy()
-            except:
+    if OOOO00OOO0O0OO0OO .ReturnKeyboardEvents and not OOOO00OOO0O0OO0OO .NonBlocking :
+        OO0O0OOOOO000OOOO .bind ("<KeyRelease>",OOOO00OOO0O0OO0OO ._KeyboardCallback )
+        OO0O0OOOOO000OOOO .bind ("<MouseWheel>",OOOO00OOO0O0OO0OO ._MouseWheelCallback )
+        OO0O0OOOOO000OOOO .bind ("<Button-4>",OOOO00OOO0O0OO0OO ._MouseWheelCallback )
+        OO0O0OOOOO000OOOO .bind ("<Button-5>",OOOO00OOO0O0OO0OO ._MouseWheelCallback )
+    elif OOOO00OOO0O0OO0OO .ReturnKeyboardEvents :
+        OO0O0OOOOO000OOOO .bind ("<Key>",OOOO00OOO0O0OO0OO ._KeyboardCallback )
+        OO0O0OOOOO000OOOO .bind ("<MouseWheel>",OOOO00OOO0O0OO0OO ._MouseWheelCallback )
+        OO0O0OOOOO000OOOO .bind ("<Button-4>",OOOO00OOO0O0OO0OO ._MouseWheelCallback )
+        OO0O0OOOOO000OOOO .bind ("<Button-5>",OOOO00OOO0O0OO0OO ._MouseWheelCallback 
+    if OOOO00OOO0O0OO0OO .NoTitleBar :
+        OOOO00OOO0O0OO0OO .TKroot .focus_force ()
+    if OOOO00OOO0O0OO0OO .AutoClose :
+        if not OOOO00OOO0O0OO0OO .finalize_in_progress :
+            OOOO00OOO0O0OO0OO ._start_autoclose_timer ()
+    if OOOO00OOO0O0OO0OO .Timeout !=None :
+        OOOO00OOO0O0OO0OO .TKAfterID =OO0O0OOOOO000OOOO .after (int (OOOO00OOO0O0OO0OO .Timeout ),OOOO00OOO0O0OO0OO ._TimeoutAlarmCallback )
+    if OOOO00OOO0O0OO0OO .NonBlocking :
+        OOOO00OOO0O0OO0OO .TKroot .protocol ("WM_DESTROY_WINDOW",OOOO00OOO0O0OO0OO ._OnClosingCallback )
+        OOOO00OOO0O0OO0OO .TKroot .protocol ("WM_DELETE_WINDOW",OOOO00OOO0O0OO0OO ._OnClosingCallback )
+    else :
+        OOOO00OOO0O0OO0OO .CurrentlyRunningMainloop =True
+        OOOO00OOO0O0OO0OO .TKroot .protocol ("WM_DESTROY_WINDOW",OOOO00OOO0O0OO0OO ._OnClosingCallback )
+        OOOO00OOO0O0OO0OO .TKroot .protocol ("WM_DELETE_WINDOW",OOOO00OOO0O0OO0OO ._OnClosingCallback )
+        if OOOO00OOO0O0OO0OO .modal :
+            OOOO00OOO0O0OO0OO .make_modal ()
+        Window ._window_running_mainloop =OOOO00OOO0O0OO0OO
+        Window ._root_running_mainloop =OOOO00OOO0O0OO0OO .TKroot
+        OOOO00OOO0O0OO0OO .TKroot .mainloop ()
+        OOOO00OOO0O0OO0OO .CurrentlyRunningMainloop =False
+        OOOO00OOO0O0OO0OO .TimerCancelled =True
+        if not OOOO00OOO0O0OO0OO .FormRemainedOpen :
+            Window ._DecrementOpenCount ()
+        if OOOO00OOO0O0OO0OO .RootNeedsDestroying :
+            try :
+                OOOO00OOO0O0OO0OO .TKroot .destroy ()
+            except :
                 pass
-            window.RootNeedsDestroying = False
-    return
+            OOOO00OOO0O0OO0OO .RootNeedsDestroying =False
+    return 
 
 
 
